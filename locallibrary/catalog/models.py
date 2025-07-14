@@ -5,6 +5,7 @@ from django.utils.translation import gettext_lazy as _
 
 from utils.constants import (
     MAX_GENRE_NAME_LENGTH,
+    MAX_GENRE_DISPLAY,
     MAX_BOOK_TITLE_LENGTH,
     MAX_BOOK_SUMMARY_LENGTH,
     MAX_BOOK_ISBN_LENGTH,
@@ -60,6 +61,11 @@ class Book(models.Model):
     def get_absolute_url(self):
         """Returns the url to access a detail record for this book."""
         return reverse('book-detail', args=[str(self.id)])
+    def display_genre(self):
+        """Tạo một chuỗi cho Thể loại. Điều này là bắt buộc để hiển thị thể loại trong Admin."""
+        return ', '.join(genre.name for genre in self.genre.all()[:MAX_GENRE_DISPLAY])
+
+    display_genre.short_description = 'Genre'
     
 class BookInstance(models.Model):
     """Model representing a specific copy of a book (i.e. that can be borrowed from the library)."""
