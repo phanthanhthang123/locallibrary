@@ -3,12 +3,11 @@
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-07-17 15:59+0700\n"
+"POT-Creation-Date: 2025-07-17 16:59+0700\n"
 "PO-Revision-Date: 2025-07-17 16:45+0700\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Vietnamese <vi@li.org>\n"
@@ -18,76 +17,136 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: models.py:23
-msgid "Enter a book genre (e.g.Science Fiction)"
-msgstr "Nhập thể loại sách (ví dụ: Khoa học viễn tưởng)"
-
-#: models.py:42
-msgid "Enter a brief description of the book"
-msgstr "Nhập mô tả ngắn gọn về cuốn sách"
-
-#: models.py:48
-msgid ""
-"13 Character <a href=\"https://www.isbn-international.org/content/what-"
-"isbn\">ISBN number</a>"
-msgstr "13 ký tự <a href=\"https://www.isbn-international.org/content/what-isbn\">mã số ISBN</a>"
-
-#: models.py:55
-msgid "Select a genre for this book"
-msgstr "Chọn thể loại cho cuốn sách này"
-
-#: models.py:75
-msgid "Unique ID for this particular bookacross whole library"
-msgstr "Mã định danh duy nhất cho cuốn sách này trong toàn bộ thư viện"
-
-#: models.py:93
-msgid "Book availability"
-msgstr "Tình trạng sách"
-
-#: templates/base_generic.html:22
+#: templates/base_generic.html:27
 msgid "Home"
 msgstr "Trang chủ"
 
-#: templates/base_generic.html:23
+#: templates/base_generic.html:28
 msgid "All books"
 msgstr "Tất cả sách"
 
-#: templates/base_generic.html:24
+#: templates/base_generic.html:29
 msgid "All authors"
 msgstr "Tất cả tác giả"
 
-#: templates/index.html:6
+#: templates/catalog/book_detail.html:5
+msgid "Author:"
+msgstr "Tác giả:"
+
+#: templates/catalog/book_detail.html:6
+msgid "Summary:"
+msgstr "Tóm tắt:"
+
+#: templates/catalog/book_detail.html:7
+msgid "ISBN:"
+msgstr "Mã ISBN:"
+
+#: templates/catalog/book_detail.html:8
+msgid "Language:"
+msgstr "Ngôn ngữ:"
+
+#: templates/catalog/book_detail.html:9
+msgid "Genre:"
+msgstr "Thể loại:"
+
+#: templates/catalog/book_detail.html:12 templates/index.html:13
+msgid "Copies:"
+msgstr "Bản sao:"
+
+#: templates/catalog/book_detail.html:21
+msgid "Due to be returned:"
+msgstr "Ngày phải trả:"
+
+#: templates/catalog/book_detail.html:25
+msgid "Imprint:"
+msgstr "Nhà xuất bản:"
+
+#: templates/catalog/book_detail.html:27
+msgid "Number of copies available for loan:"
+msgstr "Số bản sao có sẵn để mượn:"
+
+#: templates/catalog/book_list.html:16
+msgid "There are no books in the library."
+msgstr "Không có cuốn sách nào trong thư viện."
+
+#: templates/catalog/book_list.html:18
+msgid "Total number of lists in the library:"
+msgstr "Tổng số danh sách trong thư viện:"
+
+#: templates/catalog/book_list.html:19
+msgid "More information:"
+msgstr "Thông tin thêm:"
+
+#: templates/catalog/book_list.html:22
+msgid "Hello, you are logged in!"
+msgstr "Xin chào, bạn đã đăng nhập!"
+
+#: templates/catalog/book_list.html:25
+msgid "List of genres:"
+msgstr "Danh sách thể loại:"
+
+#: templates/catalog/book_list.html:32
+msgid "Top 5 books"
+msgstr "Top 5 cuốn sách"
+
+#: templates/catalog/book_list.html:50
+msgid "Page"
+msgstr "Trang"
+
+#: templates/catalog/book_list.html:51
+msgid "of"
+msgstr "trên tổng số"
+
+#: templates/index.html:5
 msgid "Local Library Home"
 msgstr "Trang chủ Thư viện"
 
-#: templates/index.html:7
+#: templates/index.html:6
 msgid "Welcome to LocalLibrary, a website developed by"
 msgstr "Chào mừng đến với LocalLibrary, một trang web được phát triển bởi"
 
-#: templates/index.html:8
+#: templates/index.html:7
 msgid "Mozilla Developer Network"
 msgstr "Mạng lưới phát triển Mozilla"
 
-#: templates/index.html:10
+#: templates/index.html:9
 msgid "Dynamic content"
 msgstr "Nội dung động"
 
-#: templates/index.html:11
+#: templates/index.html:10
 msgid "The library has the following record counts:"
-msgstr "Thư viện có các số liệu thống kê sau:"
+msgstr "Thư viện có các thống kê sau:"
 
-#: templates/index.html:13
+#: templates/index.html:12
 msgid "Books:"
 msgstr "Sách:"
 
 #: templates/index.html:14
-msgid "Copies:"
-msgstr "Bản sao:"
-
-#: templates/index.html:15
 msgid "Copies available:"
 msgstr "Bản sao có sẵn:"
 
-#: templates/index.html:16
+#: templates/index.html:15
 msgid "Authors:"
 msgstr "Tác giả:"
+
+#~ msgid "Enter a book genre (e.g.Science Fiction)"
+#~ msgstr "Nhập thể loại sách (ví dụ: Khoa học viễn tưởng)"
+
+#~ msgid "Enter a brief description of the book"
+#~ msgstr "Nhập mô tả ngắn gọn về cuốn sách"
+
+#~ msgid ""
+#~ "13 Character <a href=\"https://www.isbn-international.org/content/what-"
+#~ "isbn\">ISBN number</a>"
+#~ msgstr ""
+#~ "13 ký tự <a href=\"https://www.isbn-international.org/content/what-"
+#~ "isbn\">mã số ISBN</a>"
+
+#~ msgid "Select a genre for this book"
+#~ msgstr "Chọn thể loại cho cuốn sách này"
+
+#~ msgid "Unique ID for this particular bookacross whole library"
+#~ msgstr "Mã định danh duy nhất cho cuốn sách này trong toàn bộ thư viện"
+
+#~ msgid "Book availability"
+#~ msgstr "Tình trạng sách"

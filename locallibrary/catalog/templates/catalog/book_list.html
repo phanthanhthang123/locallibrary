@@ -1,0 +1,60 @@
+{% extends "base_generic.html" %}
+{% load i18n %}
+
+{%block content%}
+    <h1>{% trans "Book List" %}</h1>
+    {%if my_book_list%}
+        <ul>
+            {% for book in my_book_list %}
+                <li>
+                    <a href="{{book.get_absolute_url}}">{{ book.title }}</a> 
+                    ({{ book.author }})
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>{% trans "There are no books in the library." %}</p>
+    {%endif%}
+    <h2>{% trans "Total number of lists in the library:" %} {{ total_books }}</h2>
+    <p>{% trans "More information:" %} {{ some_data }}</p>
+
+    {% if is_logged_in %}
+        <p>{% trans "Hello, you are logged in!" %}</p>
+    {% endif %}
+
+    <h3>{% trans "List of genres:" %}</h3>
+    <ul>
+    {% for genre in genres %}
+        <li>{{ genre.name }}</li>
+    {% endfor %}
+    </ul>
+
+    <h3>{% trans "Top 5 books" %}</h3>
+    <ul>
+    {% for book in my_book_list %}
+        <li>{{ book.title }}</li>
+    {% endfor %}
+    </ul>
+
+{%endblock%}
+
+{% block pagination %}
+    {% if is_paginated %}
+        <div class="pagination">
+            <span class="page-links">
+                {% if page_obj.has_previous %}
+                    <a href="{{ request.path }}?page={{ page_obj.previous_page_number }}">previous
+                    </a>
+                {% endif %}
+                <span class="page-current">
+                    {% trans "Page" %} {{ page_obj.number }} 
+                    {% trans "of" %} {{ page_obj.paginator.num_pages }}.
+                </span>
+                {% if page_obj.has_next %}
+                    <a href="{{ request.path }}?page={{ page_obj.next_page_number }}">next
+                    </a>
+                {% endif %}
+            </span>
+        </div>
+    {% endif %}
+{% endblock %}
