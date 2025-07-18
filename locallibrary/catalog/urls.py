@@ -8,3 +8,6 @@ urlpatterns = [
     path('books/<int:pk>/', views.BookDetailView.as_view(), name='book-detail'),
     path('i18n/setlang/', set_language, name='set_language'),
 ]
+urlpatterns += [
+    path('mybooks/', views.BookListView.as_view(), name='my-borrowed'),
+]

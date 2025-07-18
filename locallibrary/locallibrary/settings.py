@@ -63,7 +63,7 @@ ROOT_URLCONF = 'locallibrary.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],  # Specify your templates directory
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -133,6 +133,8 @@ LANGUAGES = [
     ('en', _('English')),
     ('vi', _('Vietnamese')),
 ]
+# Chuyển hướng đến URL trang chủ sau khi đăng nhập (Mặc định chuyển hướng đến /accounts/profile/)
+LOGIN_REDIRECT_URL = '/'
 
 LOCALE_PATHS = [
     BASE_DIR / 'locale', # nơi lưu file dịch
@@ -147,3 +149,5 @@ STATIC_URL = '/static/'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
