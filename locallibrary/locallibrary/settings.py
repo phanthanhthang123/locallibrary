@@ -13,6 +13,8 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 from pathlib import Path
 import os
 from dotenv import load_dotenv
+# Danh sách các ngôn ngữ được hỗ trợ
+from django.utils.translation import gettext_lazy as _
 
 # Load environment variables from .env file
 load_dotenv()
@@ -53,6 +55,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.middleware.locale.LocaleMiddleware' # Middleware for language support
 ]
 
 ROOT_URLCONF = 'locallibrary.urls'
@@ -126,6 +129,14 @@ USE_L10N = True
 
 USE_TZ = True
 
+LANGUAGES = [
+    ('en', _('English')),
+    ('vi', _('Vietnamese')),
+]
+
+LOCALE_PATHS = [
+    BASE_DIR / 'locale', # nơi lưu file dịch
+]
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
