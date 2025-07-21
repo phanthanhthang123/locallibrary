@@ -1,6 +1,10 @@
 from django.shortcuts import render
 from catalog.models import Book, BookInstance, Author, Genre
 from django.views import generic
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.decorators import permission_required
+from django.contrib.auth.mixins import PermissionRequiredMixin
 from utils.constants import (
     BOOK_INSTANCE_STATUS,
     GET_BOOKS_PER_PAGE,
@@ -8,6 +12,9 @@ from utils.constants import (
     )
 
 # Create your views here.
+# @permission_required('catalog.can_mark_returned')
+# @permission_required('catalog.can_edit')
+# @login_required
 def index(request):
     """View function for home page of site."""
     # Generate counts of some of the main objects
@@ -36,12 +43,13 @@ def index(request):
     # Render the HTML template index.html with the data in the context variable
     return render(request, 'index.html', context=contexts)
 
-class BookListView(generic.ListView):
+class BookListView(PermissionRequiredMixin,LoginRequiredMixin,generic.ListView):
     model = Book
     paginate_by = PAGINATE_BY  # Number of books to display per page
     context_object_name = 'my_book_list' # your own name for the list as a template variable
     queryset = Book.objects.all()[:GET_BOOKS_PER_PAGE]  # Get 5 books containing 'war' in the title
     template_name = 'catalog/book_list.html'  # Specify your own template name/location
+    permission_required = 'catalog.can_see_all_books'  # Specify the permission required to view this page
 
     def get_context_data(self, **kwargs):
         # Gọi phương thức triển khai ở lớp cha trước để lấy context
@@ -52,10 +60,12 @@ class BookListView(generic.ListView):
         context['is_logged_in'] = self.request.user.is_authenticated
         return context
 
-class BookDetailView(generic.DetailView):
+class BookDetailView(PermissionRequiredMixin,LoginRequiredMixin,generic.DetailView):
     model = Book
     template_name = 'catalog/book_detail.html'  # Specify your own template name/location
     context_object_name = 'book'  # your own name for the book as a template variable
+    permission_required = 'catalog.can_see_all_books'
+
     def get_context_data(self, **kwargs):
         # Gọi phương thức triển khai ở lớp cha trước để lấy context
         context = super(BookDetailView, self).get_context_data(**kwargs)

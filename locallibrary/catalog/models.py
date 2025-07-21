@@ -2,6 +2,8 @@ from django.db import models
 from django.urls import reverse # Used to generate URLs by reversing the URL patterns
 import uuid
 from django.utils.translation import gettext_lazy as _
+from django.contrib.auth.models import User
+from datetime import date
 
 from utils.constants import (
     MAX_GENRE_NAME_LENGTH,
@@ -54,7 +56,10 @@ class Book(models.Model):
         Genre, 
         help_text=_('Select a genre for this book')
     )
-    
+    class Meta:
+        ordering = ['title']
+        permissions = (("can_see_all_books", "Can view all books in the catalog"),)
+
     def __str__(self):
         """String for representing the Model object."""
         return self.title
@@ -64,6 +69,7 @@ class Book(models.Model):
     def display_genre(self):
         """Tạo một chuỗi cho Thể loại. Điều này là bắt buộc để hiển thị thể loại trong Admin."""
         return ', '.join(genre.name for genre in self.genre.all()[:MAX_GENRE_DISPLAY])
+
 
     display_genre.short_description = 'Genre'
     
@@ -77,6 +83,12 @@ class BookInstance(models.Model):
     book = models.ForeignKey(
         'Book', 
         on_delete=models.SET_NULL, null=True
+    )
+    borrower = models.ForeignKey(
+        User, 
+        on_delete=models.SET_NULL, 
+        null=True, 
+        blank=True
     )
     imprint = models.CharField(
         max_length=BOOK_INSTANCE_IMPRINT_MAX_LENGTH
@@ -92,10 +104,16 @@ class BookInstance(models.Model):
         default=BOOK_INSTANCE_STATUS.MAINTENANCE,
         help_text=_('Book availability'),
     )
-
+    
     class Meta:
         ordering = ['due_back']
+        permissions = (("can_mark_returned", "Set book as returned"),)
 
+    @property
+    def is_overdue(self):
+        """Kiểm tra xem sách có quá hạn hay không."""
+        return self.due_back and date.today() > self.due_back
+    
     def __str__(self):
         """String for representing the Model object."""
         return f'{self.id} ({self.book.title})'
