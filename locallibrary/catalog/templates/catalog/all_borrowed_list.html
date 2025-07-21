@@ -1,0 +1,16 @@
+{% extends "base_generic.html" %}
+{% load i18n %}
+
+
+{% block content %}
+  <h1>{% trans "All borrowed books" %}</h1>
+  <ul>
+    {% for bookinst in borrowed_books %}
+      <li>
+        <strong>{{ bookinst.book.title }}</strong> 
+    </li>
+    {% empty %}
+      <li>{% trans "No books are currently borrowed." %}</li>
+    {% endfor %}
+  </ul>
+{% endblock %}

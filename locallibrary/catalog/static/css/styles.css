@@ -3,3 +3,10 @@
     padding: 0;
     list-style: none;
 }
+
+.sidebar-nav hr {
+    border: none;
+    height: 1px;
+    background-color: #333;
+    margin: 15px 0;
+}
