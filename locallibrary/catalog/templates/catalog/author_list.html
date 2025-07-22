@@ -6,7 +6,7 @@
     <ul>
         {% for author in author_list %}
             <li>
-                <a href="">{{ author.first_name }}{{author.last_name}}</a>
+                <a href="{% url 'author-detail' author.id %}">{{ author.first_name }}{{author.last_name}}</a>
                 <strong>({{ author.date_of_birth }} - {{ author.date_of_death }})</strong>
 
             </li>

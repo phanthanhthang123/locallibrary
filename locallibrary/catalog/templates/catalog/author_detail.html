@@ -1,0 +1,32 @@
+{% extends "base_generic.html" %}
+{% load i18n %}
+
+{% block content %}
+  <h1>{% trans "Author Details" %}</h1>
+
+  <h2>{{ author.first_name }} {{ author.last_name }}</h2>
+
+  <p><strong>{% trans "Date of birth" %}:</strong> {{ author.date_of_birth }}</p>
+  <p><strong>{% trans "Date of death" %}:</strong> {{ author.date_of_death|default:_("Unknown") }}</p>
+
+  <h3>{% trans "Books by this author" %}:</h3>
+  {% if book_list %}
+    <ul>
+      {% for book in book_list %}
+        <li>
+          <a href="{{ book.get_absolute_url }}">{{ book.title }}</a>
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>{% trans "This author has no books." %}</p>
+  {% endif %}
+    <div>
+        <a href="{% url 'author-update' author.id %}" >{% trans "update author" %}
+        </a>
+    </div>
+    <div>
+        <a href="{% url 'author-delete' author.id %}" >{% trans "delete author" %}
+        </a>
+    </div>
+{% endblock %}
