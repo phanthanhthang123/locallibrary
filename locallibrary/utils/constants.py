@@ -30,3 +30,11 @@ GET_BOOKS_PER_PAGE = 5
 
 #PAGINATION 
 PAGINATE_BY = 1
+
+# Constants for bookin instance weekly renewal
+WEEKLY_RENEWAL = 4
+
+# Constants for date interval authorization
+DATE_INTERVAL = {
+    'date_of_death': '11/06/2020'
+}

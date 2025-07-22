@@ -26,7 +26,8 @@
                 <ul class="sidebar-nav">
                     <li><a href="{% url 'index' %}">{% trans "Home" %}</a></li>
                     <li><a href="{% url 'books' %}">{% trans "All books" %}</a></li>
-                    <li><a href="">{% trans "All authors" %}</a></li>
+                    <li><a href="{% url 'authors'%}">{% trans "All authors" %}</a></li>
+                    <li><hr></li>
                     {% if user.is_authenticated %}
                     <li>{% trans "User: " %}{{ user.get_username }}</li>
                     <li><a href="{% url 'my-borrowed' %}">{% trans "My Borrowed" %}</a></li>
@@ -42,6 +43,15 @@
                         </a>
                     </li>
                     {% endif %}
+                    <li><hr></li>
+                    <li>
+                        <strong> {% trans "Staff" %}</strong>
+                    </li>
+                    <li>
+                        <a href="{% url 'all-borrowed'%}"> 
+                            {% trans "All borrowed" %}
+                        </a>
+                    </li>
                 </ul>
             {% endblock %}
         </div>
