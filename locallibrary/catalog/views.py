@@ -149,3 +149,14 @@ class AuthorUpdate(UpdateView):
 class AuthorDelete(DeleteView):
     model = Author
     success_url = reverse_lazy('authors')
+
+class AuthorDetailView(generic.DetailView):
+    model = Author
+    template_name = 'catalog/author_detail.html'  # Specify your own template name/location
+    context_object_name = 'author'  # your own name for the author as a template variable
+
+    def get_context_data(self, **kwargs):
+        # Gọi phương thức triển khai ở lớp cha trước để lấy context
+        context = super(AuthorDetailView, self).get_context_data(**kwargs)
+        context['book_list'] = self.object.book_set.all()  # Lấy tất cả Book liên quan đến Author này
+        return context
